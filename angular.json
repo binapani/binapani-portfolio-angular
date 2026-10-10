@@ -1,0 +1,52 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "binapani-portfolio": {
+      "projectType": "application",
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        
+"build": {
+  "builder": "@angular-devkit/build-angular:application",
+  "options": {
+    "outputPath": "dist/binapani-portfolio",
+    "index": "src/index.html",
+    "browser": "src/main.ts",
+    "polyfills": ["zone.js"],
+    "tsConfig": "tsconfig.app.json",
+    "inlineStyleLanguage": "scss",
+    "assets": ["src/assets"],
+    "styles": ["src/styles.scss"],
+    "scripts": []
+  },
+  "configurations": {
+    "production": {
+      "optimization": true,
+      "outputHashing": "all",
+      "sourceMap": false
+    },
+    "development": {
+      "optimization": false,
+      "extractLicenses": false,
+      "sourceMap": true
+    }
+  },
+  "defaultConfiguration": "development"
+},
+
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": { "buildTarget": "binapani-portfolio:build:production" },
+            "development": { "buildTarget": "binapani-portfolio:build:development" }
+          },
+          "defaultConfiguration": "development"
+        }
+      }
+    }
+  }
+}

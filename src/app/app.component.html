@@ -1,0 +1,109 @@
+<header class="topbar">
+  <a class="brand" href="#home" (click)="$event.preventDefault(); scrollTo('home')">
+    <span class="brand-mark">✦</span><span>Bina Pani</span>
+  </a>
+  <nav>
+    @for (item of nav; track item) {
+      <a [class.active]="item === 'Home'" [href]="'#' + item.toLowerCase()" (click)="$event.preventDefault(); scrollTo(item)">{{ item }}</a>
+    }
+  </nav>
+  <div class="top-actions">
+    <a class="github" href="https://github.com/binapani" target="_blank" aria-label="GitHub">◉</a>
+    <button class="outline-btn">Resume <span>↓</span></button>
+  </div>
+</header>
+
+<main>
+  <section id="home" class="hero section-shell">
+    <div class="hero-art"></div>
+    <div class="hero-copy">
+      <p class="eyebrow">AI ARCHITECT <span>|</span> SOFTWARE ENGINEER <span>|</span> PRODUCT BUILDER</p>
+      <h1>Bina Pani</h1>
+      <h2>Building <span>AI-powered</span><br>products that create impact</h2>
+      <p class="lead">14+ years of experience in software development, architecture and building real-world applications. Currently focused on Generative AI, RAG, AI Agents, .NET, Angular, Python and Cloud.</p>
+      <div class="hero-buttons">
+        <button class="primary-btn" (click)="scrollTo('projects')">View Projects <span>→</span></button>
+        <button class="outline-btn">Download Resume <span>↓</span></button>
+      </div>
+      <div class="stats">
+        <div><strong>14+</strong><small>Years Experience</small></div>
+        <div><strong>25+</strong><small>Projects</small></div>
+        <div><strong>AI</strong><small>Focus Area</small></div>
+        <div><strong>2</strong><small>Products</small></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="portrait-frame">
+        <div class="portrait-placeholder"><span>YOUR<br>PHOTO</span></div>
+        <div class="paint paint-a"></div><div class="paint paint-b"></div><div class="paint paint-c"></div>
+      </div>
+      <div class="signature">Colors<br><em>That Speak</em> <span>♥</span></div>
+    </div>
+    <div class="focus-list">
+      <div>✦ <span>AI / GenAI</span></div>
+      <div>♙ <span>.NET &amp; Angular</span></div>
+      <div>☁ <span>Cloud (Azure / AWS)</span></div>
+      <div>◉ <span>Game Development</span></div>
+      <div>♟ <span>Entrepreneur</span></div>
+      <div>◈ <span>Continuous Learner</span></div>
+    </div>
+  </section>
+
+  <section id="about" class="grid-3 section-shell section-gap">
+    <article class="glass about-card">
+      <div class="section-heading"><h3>About Me</h3><a href="#contact">More →</a></div>
+      <div class="about-body"><div class="about-photo">BINA<br>PANI</div><p>I am a software engineer, aspiring AI Architect and product builder with 14+ years of experience in technology. I love solving real-world problems and building products that create value.</p></div>
+      <div class="traits"><span>✿<b>Problem Solver</b></span><span>♧<b>Product Builder</b></span><span>♧<b>Creative Thinker</b></span><span>♙<b>Lifelong Learner</b></span></div>
+    </article>
+    <article id="skills" class="glass skills-card">
+      <div class="section-heading"><h3>Key Skills</h3><a href="#skills">View All Skills →</a></div>
+      <div class="skill-group"><label>AI / GenAI</label><div class="chips"><span>◉ LLM</span><span>◉ RAG</span><span>◉ LangGraph</span><span>◉ LangChain</span><span>◉ Ollama</span><span>◉ Vector DB</span></div></div>
+      <div class="skill-group"><label>Backend</label><div class="chips"><span>.NET</span><span>ASP.NET Core</span><span>C#</span><span>Python</span><span>FastAPI</span><span>SQL Server</span></div></div>
+      <div class="skill-group"><label>Frontend</label><div class="chips"><span>Angular</span><span>TypeScript</span><span>HTML</span><span>SCSS</span><span>RxJS</span><span>Ionic</span></div></div>
+      <div class="skill-group"><label>☁ Cloud / DevOps</label><div class="chips"><span>Azure</span><span>AWS</span><span>Docker</span><span>Kubernetes</span><span>CI/CD</span><span>GitHub</span></div></div>
+    </article>
+    <article id="experience" class="glass experience-card">
+      <div class="section-heading"><h3>Professional Experience</h3><a href="#experience">View Full Timeline →</a></div>
+      <div class="timeline">
+        <div class="timeline-item"><i></i><div><b>2022 – Oct 2024</b><strong>Hays Business Solution India</strong><small>Principal Software Engineer</small><p>Enterprise .NET and Angular applications, architecture, performance and cloud migration.</p></div></div>
+        <div class="timeline-item"><i></i><div><b>2018 – 2022</b><strong>Cognizant</strong><small>Software Engineer / Product Analyst</small><p>Enterprise applications, business workflows and UI modules across .NET, Angular and SQL Server.</p></div></div>
+        <div class="timeline-item"><i></i><div><b>Earlier Experience</b><strong>Various Companies</strong><small>Software Engineer</small><p>Foundation in enterprise software development, engineering practices and system design.</p></div></div>
+      </div>
+    </article>
+  </section>
+
+  <section id="projects" class="section-shell section-gap">
+    <div class="section-heading projects-heading"><div><h3>Projects</h3><div class="filters">@for (filter of filters; track filter) { <button [class.selected]="activeFilter === filter" (click)="setFilter(filter)">{{filter}}</button> }</div></div><a href="#projects">View All →</a></div>
+    <div class="project-grid">
+      @for (project of filteredProjects; track project.title) {
+        <article class="project-card" [class.featured]="project.featured">
+          <div class="project-preview"><span class="project-icon">{{project.icon}}</span><span class="preview-lines"></span></div>
+          <div class="project-content"><div class="project-title"><h4>{{project.title}}</h4>@if (project.featured) {<span>Featured</span>}</div><p>{{project.description}}</p><div class="tags">@for (tag of project.tags; track tag) {<span>{{tag}}</span>}</div><div class="card-actions"><a href="#contact">{{project.category === 'Business' ? 'Visit Site →' : 'GitHub →'}}</a>@if (project.featured) {<a class="live" href="#contact">Live Demo</a>}</div></div>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="grid-2 section-shell section-gap">
+    <article class="glass architecture">
+      <div class="section-heading"><h3>NexaAI Architecture</h3><a href="#projects">View Project →</a></div>
+      <div class="architecture-map">
+        <div class="arch-node top">Angular Client<br><small>(UI)</small></div>
+        <div class="connector v"></div>
+        <div class="arch-node core">ASP.NET Core API<br><small>(Backend)</small></div>
+        <div class="connector split"></div>
+        <div class="arch-row"><div class="arch-node purple">AI Agent<br><small>(LangGraph)</small></div><div class="arch-node purple">Business<br><small>Services</small></div><div class="arch-node green">Python FastAPI<br><small>(AI Service)</small></div></div>
+        <div class="arch-row bottom"><div class="arch-node violet">Vector DB<br><small>(FAISS)</small></div><div class="arch-node violet">LLM<br><small>(Ollama / Azure OpenAI)</small></div><div class="arch-node violet">External Tools<br><small>Search, APIs</small></div></div>
+      </div>
+    </article>
+    <article class="business-strip glass"><div class="business-art">COLORS<br><span>THAT SPEAK</span></div><div><h3>Colors Lover LLP</h3><p>Stationery | Printing | POD T-shirts | Computer Training</p><p>A small business venture spanning products, digital services and learning.</p><a href="#contact" class="dark-btn">Visit Site →</a></div></article>
+  </section>
+
+  <section id="contact" class="contact section-shell section-gap">
+    <div><p class="eyebrow">LET'S BUILD SOMETHING</p><h2>Turn ideas into<br><span>real products.</span></h2></div>
+    <div class="contact-card"><p>Open for opportunities in AI Architecture, .NET, Angular, Python and Cloud.</p><a href="mailto:binapani@example.com">✉ binapani@example.com</a><a href="https://github.com/binapani" target="_blank">◉ github.com/binapani</a><a href="#">in linkedin.com/in/binapani</a></div>
+    <button class="primary-btn">Open for Opportunities ✦</button>
+  </section>
+</main>
+
+<footer>© 2026 Bina Pani · Built with Angular · AI / Software / Products</footer>
